@@ -6,7 +6,7 @@ from sys import executable
 from os import execl as osexecl
 from asyncio import create_subprocess_exec, gather
 from uuid import uuid4
-from base64 import b64decode
+from base64 import b64deb
 from quoters import Quote
 from html import escape
 from cloudscraper import create_scraper
@@ -53,13 +53,13 @@ async def stats(_, message):
         'User tasks': config_dict.get('USER_MAX_TASKS', '∞'),
     }
     system_info = f'<b>{quote}</b>\n\n'\
-        f'<code>• Bot uptime :</code> {currentTime}\n'\
-        f'<code>• Sys uptime :</code> {osUptime}\n'\
-        f'<code>• CPU usage  :</code> {cpuUsage}%\n'\
-        f'<code>• RAM usage  :</code> {memory.percent}%\n'\
-        f'<code>• Disk usage :</code> {disk}%\n'\
-        f'<code>• Free space :</code> {get_readable_file_size(free)}\n'\
-        f'<code>• Total space:</code> {get_readable_file_size(total)}\n\n'
+        f'<b>• Bot uptime :</b> {currentTime}\n'\
+        f'<b>• Sys uptime :</b> {osUptime}\n'\
+        f'<b>• CPU usage  :</b> {cpuUsage}%\n'\
+        f'<b>• RAM usage  :</b> {memory.percent}%\n'\
+        f'<b>• Disk usage :</b> {disk}%\n'\
+        f'<b>• Free space :</b> {get_readable_file_size(free)}\n'\
+        f'<b>• Total space:</b> {get_readable_file_size(total)}\n\n'
             
     limitations = f'<b>LIMITATIONS</b>\n\n'
     
@@ -70,7 +70,7 @@ async def stats(_, message):
             v = f'{v}GB/Link'
         else:
             v = f'{v} Tasks/user'
-        limitations += f'<code>• {k:<11}:</code> {v}\n'
+        limitations += f'<b>• {k:<11}:</b> {v}\n'
 
     stats = system_info + limitations
     reply_message = await sendMessage(message, stats, photo='IMAGES')
@@ -259,7 +259,7 @@ NOTE: Try each command without any arguments to see more details.
 /{BotCommands.RestartCommand}: Restarts and updates the bot (Only Owner & Sudo).
 /{BotCommands.LogCommand}: Gets a log file of the bot. Handy for getting crash reports (Only Owner & Sudo).
 /{BotCommands.ShellCommand}: Runs shell commands (Only Owner).
-/{BotCommands.EvalCommand}: Runs Python code line or lines (Only Owner).
+/{BotCommands.EvalCommand}: Runs Python b line or lines (Only Owner).
 /{BotCommands.ExecCommand}: Runs commands in Exec (Only Owner).
 /{BotCommands.ClearLocalsCommand}: Clears {BotCommands.EvalCommand} or {BotCommands.ExecCommand} locals (Only Owner).
 /{BotCommands.RssCommand}: RSS Menu.

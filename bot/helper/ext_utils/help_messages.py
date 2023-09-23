@@ -1,129 +1,128 @@
 YT_HELP_MESSAGE = """
-<b>To use the commands, follow this format:</b>
-<code>/{cmd} link options</code> or replying to link </b>
-<code>/{cmd} options</code>
+<b>Untuk menggunakan perintah, ikuti format ini:</b>
+<code>/{cmd} opsi tautan</code> atau membalas tautan </b>
+Opsi <code>/{cmd}</code>
 
-<b>OPTIONS:</b>
-<b>-s:</b> Select quality for specific link or links.
+<b>OPSI:</b>
+<b>-s:</b> Pilih kualitas untuk tautan atau tautan tertentu.
 
-<b>-z password:</b> Create a password-protected zip file.
+<b>-z kata sandi:</b> Buat file zip yang dilindungi kata sandi.
 
-<b>-n new_name:</b> Rename the file.
+<b>-n nama_baru:</b> Ganti nama file.
 
-<b>-t thumbnail url:</b> Custom thumbnail for each leexh.(raw or tg image url)
+<b>-t thumbnail url:</b> Thumbnail khusus untuk setiap leexh.(url gambar mentah atau tg)
 
-<b>-ss value:</b> Generate ss for leech video, max 10 for each leach.
+<b>nilai -ss:</b> Hasilkan ss untuk video lintah, maks 10 untuk setiap pelindian.
 
-<b>-id drive_folder_link or drive_id -index https://anything.in/0:</b> Upload to a custom drive.
+<b>-id drive_folder_link atau drive_id -index https://anything.in/0:</b> Unggah ke drive khusus.
 
-<b>-opt playliststart:^10|fragment_retries:^inf|matchtitle:S13|writesubtitles:true|live_from_start:true|postprocessor_args:{{"ffmpeg": ["-threads", "4"]}}|wait_for_video:(5, 100):</b> Set additional options.
+<b>-opt playliststart:^10|fragment_retries:^inf|matchtitle:S13|writesubtitles:true|live_from_start:true|postprocessor_args:{{"ffmpeg": ["-threads", "4"]}}|wait_for_video: (5, 100):</b> Tetapkan opsi tambahan.
 
-<b>-i 10:</b> Process multiple links.
+<b>-i 10:</b> Proses beberapa tautan.
 
-<b>-b:</b> Perform bulk download by replying to a text message or file with links separated with new line.
+<b>-b:</b> Lakukan pengunduhan massal dengan membalas pesan teks atau file dengan tautan yang dipisahkan dengan baris baru.
 
-
-<b>Check all yt-dlp api options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184'>FILE</a> or use this <a href='https://t.me/mltb_official_channel/177'>script</a> to convert cli arguments to api options.</b>
+<b>Periksa semua opsi api yt-dlp dari <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184'>FILE</a > atau gunakan <a href='https://t.me/mltb_official_channel/177'>skrip</a> ini untuk mengonversi argumen cli menjadi opsi api.</b>
 """
 
 MIRROR_HELP_MESSAGE = """
-<b>To use the commands, follow this format:</b>
-<code>/{cmd} link options</code> or replying to link </b>
-<code>/{cmd} options</code>
+<b>Untuk menggunakan perintah, ikuti format ini:</b>
+<code>/{cmd} opsi tautan</code> atau membalas tautan </b>
+Opsi <code>/{cmd}</code>
 
-<b>OPTIONS:</b>
-<b>-n new name:</b> Rename the file or folder.
+<b>OPSI:</b>
+<b>-n nama baru:</b> Ganti nama file atau folder.
 
-<b>-t thumbnail url:</b> Custom thumbnail for each leexh.(raw or tg image url)
+<b>-t thumbnail url:</b> Thumbnail khusus untuk setiap leexh.(url gambar mentah atau tg)
 
-<b>-ss value:</b> Generate ss for leech video, max 10 for each leach.
+<b>nilai -ss:</b> Hasilkan ss untuk video lintah, maks 10 untuk setiap pelindian.
 
-<b>-z or -z password:</b> Zip the file or folder with or without password.
+<b>-z atau -z kata sandi:</b> Zip file atau folder dengan atau tanpa kata sandi.
 
-<b>-e or -e password:</b> Extract the file or folder with or without password.
+<b>-e atau -e kata sandi:</b> Ekstrak file atau folder dengan atau tanpa kata sandi.
 
-<b>-up upload destination:</b> Upload the file or folder to a specific destination.
+<b>-up upload tujuan:</b> Unggah file atau folder ke tujuan tertentu.
 
-<b>-id drive_folder_link</b> or <b>-id drive_id -index https://anything.in/0:</b>: Upload to a custom Google Drive folder or ID.
+<b>-id drive_folder_link</b> atau <b>-id drive_id -index https://panime.id/0:</b>: Unggah ke folder atau ID Google Drive khusus.
 
-<b>-u username -p password:</b> Provide authorization for a direct link.
+<b>-u nama pengguna -p kata sandi:</b> Memberikan otorisasi untuk tautan langsung.
 
-<b>-s:</b> Select a torrent file.
+<b>-s:</b> Pilih berkas torrent.
 
-<b>-h Direct link custom headers:</b> -h
-<code>/cmd</code> link -h Key: value Key1: value1.
+<b>-h Header khusus tautan langsung:</b> -h
+tautan <code>/cmd</code> -h Kunci: nilai Kunci1: nilai1.
 
-<b>-d ratio:seed_time:</b> Set the seeding ratio and time for a torrent.
+<b>-d rasio:seed_time:</b> Mengatur rasio penyemaian dan waktu untuk torrent.
 
-<b>-i number of links/files:</b> Process multiple links or files.
+<b>-i jumlah tautan/file:</b> Memproses beberapa tautan atau file.
 
-<b>-m folder name:</b> Process multiple links or files within the same upload directory.
+<b>-m nama folder:</b> Memproses beberapa tautan atau file dalam direktori unggahan yang sama.
 
-<b>-b:</b> Perform bulk download by replying to a text message or file with multiple links separated with new line.
+<b>-b:</b> Lakukan pengunduhan massal dengan membalas pesan teks atau file dengan beberapa tautan yang dipisahkan dengan baris baru.
 
-<b>-j:</b> Join split files together before extracting or zipping.
+<b>-j:</b> Menggabungkan file terpisah sebelum mengekstraksi atau membuat zip.
 
-<b>-rcf:</b> Set Rclone flags for the command.
+<b>-rcf:</b> Setel tanda Rclone untuk perintah.
 
-<b>main:dump/ubuntu.iso</b> or <b>rcl:</b> Treat a path as an rclone download.
+<b>main:dump/ubuntu.iso</b> atau <b>rcl:</b> Perlakukan jalur sebagai unduhan rclone.
 
 
-<b>Note:</b>
-<b>Commands starting with qb are specifically for torrents.</b>
-Some commands may require additional user access or settings.
+<b>Catatan:</b>
+<b>Perintah yang dimulai dengan qb khusus untuk torrent.</b>
+Beberapa perintah mungkin memerlukan akses atau pengaturan pengguna tambahan.
 """
 
 RSS_HELP_MESSAGE = """
-Use this format to add feed URL:
-Title1 link (required)
-Title2 link -c cmd -inf xx -exf xx
-Title3 link -c cmd -d ratio:time -z password
+Gunakan format ini untuk menambahkan URL feed:
+Tautan Judul1 (wajib)
+Tautan judul2 -c cmd -inf xx -exf xx
+Judul3 tautan -c cmd -d rasio:waktu -z kata sandi
 
--c command + any arg
--inf: For included words filter.
--exf: For excluded words filter.
+-c perintah + argumen apa pun
+-inf: Untuk filter kata yang disertakan.
+-exf: Untuk filter kata yang dikecualikan.
 
-Example: Title <code>https://www.rss-url.com</code> inf: 1080 or 720 or 144p|mkv or mp4|hevc exf: flv or web|xxx opt: up: mrcc:remote:path/subdir rcf: --buffer-size:8M|key|key:value
-This filter will parse links that have titles containing "(1080 or 720 or 144p) and (mkv or mp4) and hevc" and don't contain (flv or web) and xxx words. You can add whatever you want.
+Contoh: Judul <code>https://www.rss-url.com</code> inf: 1080 atau 720 atau 144p|mkv atau mp4|hevc exf: flv atau web|xxx opt: up: mrcc:remote:path /subdir rcf: --buffer-size:8M|key|key:value
+Filter ini akan mengurai tautan yang memiliki judul berisi "(1080 atau 720 atau 144p) dan (mkv atau mp4) dan hevc" dan tidak mengandung kata (flv atau web) dan xxx. Anda dapat menambahkan apa pun yang Anda inginkan.
 
-Another example: inf: 1080 or 720p|.web. or .webrip.|hevc or x264
-This will parse titles that contain (1080 or 720p) and (.web. or .webrip.) and (hevc or x264). 
-Note: I added spaces before and after "1080" to avoid wrong matching. If there is a number like "10805695" in the title, it won't match "1080" without spaces after it.
+Contoh lain: inf: 1080 atau 720p|.web. atau .webrip.|hevc atau x264
+Ini akan mengurai judul yang berisi (1080 atau 720p) dan (.web. atau .webrip.) dan (hevc atau x264).
+Catatan: Saya menambahkan spasi sebelum dan sesudah "1080" untuk menghindari kesalahan pencocokan. Jika ada angka seperti "10805695" pada judul, maka tidak akan cocok dengan "1080" tanpa spasi setelahnya.
 
-<b>Filter Notes:</b>
-1. | means "and."
-2. Add "or" between similar keys. For example, you can add it between qualities or between extensions. Avoid filters like "f: 1080|mp4 or 720|web" because this will parse "1080" and (mp4 or 720) and web, instead of (1080 and mp4) or (720 and web).
-3. You can add "or" and "|" as much as you want.
-4. Check the title for static special characters before or after the qualities, extensions, or other elements, and use them in the filter to avoid wrong matches.
+<b>Catatan Filter:</b>
+1.| berarti "dan."
+2. Tambahkan "atau" di antara tombol serupa. Misalnya, Anda dapat menambahkannya di antara kualitas atau di antara ekstensi. Hindari filter seperti "f: 1080|mp4 atau 720|web" karena ini akan mengurai "1080" dan (mp4 atau 720) dan web, bukan (1080 dan mp4) atau (720 dan web).
+3. Anda dapat menambahkan "atau" dan "|" sebanyak yang kamu mau.
+4. Periksa judul untuk karakter khusus statis sebelum atau sesudah kualitas, ekstensi, atau elemen lainnya, dan gunakan dalam filter untuk menghindari kecocokan yang salah.
 
-<b>Timeout:</b> 60 sec.
+<b>Waktu habis:</b> 60 detik.
 
-<b>Please apply the same formatting to this message:</b>
+<b>Harap terapkan format yang sama pada pesan ini:</b>
 """
 
 CLONE_HELP_MESSAGE = """
-Send Gdrive link or rclone path along with command or by replying to the link/rc_path by command.
+Kirim tautan Gdrive atau jalur rclone beserta perintah atau dengan membalas tautan /rc_path dengan perintah.
 
-<b>Multi links only by replying to first gdlink or rclone_path:</b>
-<code>/{cmd}</code> -i 10 (number of links/pathies)
+<b>Beberapa tautan hanya dengan membalas gdlink atau rclone_path pertama:</b>
+<code>/{cmd}</code> -i 10 (jumlah tautan/pathies)
 
 <b>Gdrive:</b>
-<code>/{cmd}</code> gdrivelink
+<code>/{cmd}</code> tautan gdrive
 
-<b>Upload Custom Drive:</b> link -id -index
--id <code>drive_folder_link</code> or <code>drive_id</code> -index <code>https://anything.in/0:</code>
-drive_id must be a folder ID, and index must be a URL, otherwise it will not accept.
+<b>Unggah Drive Khusus:</b> link -id -index
+-id <code>drive_folder_link</code> atau <code>drive_id</code> -index <code>https://panime.id/0:</code>
+drive_id harus berupa ID folder, dan indeks harus berupa URL, jika tidak maka tidak akan diterima.
 
 <b>Rclone:</b>
-<code>/{cmd}</code> (rcl or rclone_path) -up (rcl or rclone_path) -rcf flagkey:flagvalue|flagkey|flagkey:flagvalue
+<code>/{cmd}</code> (rcl atau rclone_path) -up (rcl atau rclone_path) -rcf flagkey:flagvalue|flagkey|flagkey:flagvalue
 
-Note: If -up is not specified, the rclone destination will be the RCLONE_PATH from config.env.
+Catatan: Jika -up tidak ditentukan, tujuan rclone adalah RCLONE_PATH dari config.env.
 """
 
 PASSWORD_ERROR_MESSAGE = """
-<b>This link requires a password!</b>
-- Insert sign <b>::</b> after the link and write the password after the sign.
-<b>Example:</b> {}::love you
-Note: No spaces between the signs <b>::</b>
-For the password, you can use a space!
+<b>Tautan ini memerlukan kata sandi!</b>
+- Sisipkan tanda <b>::</b> setelah link dan tulis kata sandi setelah tanda tersebut.
+<b>Contoh:</b> {}::kamu Asu
+Catatan: Tidak boleh ada spasi di antara tanda <b>::</b>
+Untuk passwordnya bisa menggunakan spasi!
 """
