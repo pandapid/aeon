@@ -385,7 +385,7 @@ class MirrorLeechListener:
                 fmsg, totalmsg = '\n\n', ''
                 lmsg = '<b>Files have been sent. Access them via the provided links.</b>'
                 for index, (link, name) in enumerate(files.items(), start=1):
-                    fmsg += f"{index}. <a href='{link}'>{name}</a>\n"
+                    fmsg += f"{index}. <b>{name}</b>\n"
                     totalmsg = (msg + lmsg + fmsg) if attachmsg else fmsg
                     if len(totalmsg.encode()) > 3900:
                         if self.linkslogmsg:

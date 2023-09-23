@@ -245,17 +245,17 @@ help_string = f'''
 <b> /{BotCommands.CountCommand} [drive_url]:</b> Counts files/folders in Google Drive.
 
 ➲ <b> Setting:</b>
-<b> /{BotCommands.UserSetCommand} [query]:</b> User settings.
-<b> /{BotCommands.BotSetCommand} [query]:</b> Bot settings (owner).
+<b> /{BotCommands.UserSetCommand[0]} or /{BotCommands.UserSetCommand[1]} [query]:</b> User settings.
+<b> /{BotCommands.BotSetCommand[0]} or /{BotCommands.BotSetCommand[1]} [query]:</b> Bot settings (owner).
 
 ➲ <b> Perintah lain:</b>
 <b> /{BotCommands.BtSelectCommand}:</b> Select files from torrents by gid or reply.
 <b> /{BotCommands.CancelMirror}:</b> Cancels task by gid or reply.
 <b> /{BotCommands.CancelAllCommand[0]} or /{BotCommands.CancelAllCommand[1]}:</b> Cancels all [status] tasks.
-/{BotCommands.ListCommand} [query]: Searches in Google Drive(s).
-/{BotCommands.SearchCommand} [query]: Searches for torrents with API.
-/{BotCommands.StatusCommand}: Shows status of all downloads.
-/{BotCommands.StatsCommand}: Shows stats of the machine hosting the bot.
+<b> /{BotCommands.ListCommand} [query]:</b> Searches in Google Drive(s).
+<b> /{BotCommands.SearchCommand[0]} or /{BotCommands.SearchCommand[1]} [query]:</b> Searches for torrents with API.
+<b> /{BotCommands.StatusCommand[0]} or /{BotCommands.StatusCommand[1]}:</b> Shows status of all downloads.
+<b> /{BotCommands.StatsCommand[0]} or /{BotCommands.StatsCommand[1]}:</b> Shows stats of the machine hosting the bot.
 '''
 
 @new_task
