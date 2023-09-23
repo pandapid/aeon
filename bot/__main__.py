@@ -6,7 +6,7 @@ from sys import executable
 from os import execl as osexecl
 from asyncio import create_subprocess_exec, gather
 from uuid import uuid4
-from base64 import b64deb
+from base64 import b64decode
 from quoters import Quote
 from html import escape
 from cloudscraper import create_scraper
