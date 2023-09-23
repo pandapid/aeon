@@ -4,16 +4,16 @@ from bot import CMD_SUFFIX
 class _BotCommands:
     def __init__(self):
         self.StartCommand = 'start'
-        self.MirrorCommand = [f'mirror{CMD_SUFFIX}', f'tgm{CMD_SUFFIX}']
-        self.QbMirrorCommand = [f'qbmirror{CMD_SUFFIX}', f'tgm{CMD_SUFFIX}']
+        self.MirrorCommand = [f'tm{CMD_SUFFIX}', f'mirror{CMD_SUFFIX}']
+        self.QbMirrorCommand = [f'tqm{CMD_SUFFIX}', f'qbmirror{CMD_SUFFIX}']
         self.YtdlCommand = [f'ytdl{CMD_SUFFIX}', f'ty{CMD_SUFFIX}']
-        self.LeechCommand = [f'leech{CMD_SUFFIX}', f'tl{CMD_SUFFIX}']
-        self.QbLeechCommand = [f'qbleech{CMD_SUFFIX}', f'tql{CMD_SUFFIX}']
-        self.YtdlLeechCommand = [f'ytdlleech{CMD_SUFFIX}', f'tyl{CMD_SUFFIX}']
-        self.CloneCommand = [f'clone{CMD_SUFFIX}', f'tcl{CMD_SUFFIX}']
+        self.LeechCommand = [f'tl{CMD_SUFFIX}', f'leech{CMD_SUFFIX}']
+        self.QbLeechCommand = [f'tql{CMD_SUFFIX}', f'qbleech{CMD_SUFFIX}']
+        self.YtdlLeechCommand = [f'tyl{CMD_SUFFIX}', f'ytdlleech{CMD_SUFFIX}']
+        self.CloneCommand = [f'tcl{CMD_SUFFIX}', f'clone{CMD_SUFFIX}']
         self.CountCommand = f'count{CMD_SUFFIX}'
         self.DeleteCommand = f'del{CMD_SUFFIX}'
-        self.CancelMirror = [f'cancel{CMD_SUFFIX}', f'can{CMD_SUFFIX}']
+        self.CancelMirror = f'cancel{CMD_SUFFIX}'
         self.CancelAllCommand = [f'cancelall{CMD_SUFFIX}', f'call{CMD_SUFFIX}']
         self.ListCommand = f'list{CMD_SUFFIX}'
         self.SearchCommand = [f'search{CMD_SUFFIX}', f'src{CMD_SUFFIX}']
@@ -26,7 +26,7 @@ class _BotCommands:
         self.PingCommand = [f'ping{CMD_SUFFIX}', 'pingall', f'p{CMD_SUFFIX}']
         self.RestartCommand = [f'restart{CMD_SUFFIX}', 'restartall', f'r{CMD_SUFFIX}']
         self.StatsCommand = [f'stats{CMD_SUFFIX}', f'st{CMD_SUFFIX}']
-        self.HelpCommand = f'help{CMD_SUFFIX}'
+        self.HelpCommand = f'th{CMD_SUFFIX}'
         self.LogCommand = f'log{CMD_SUFFIX}'
         self.ShellCommand = f'shell{CMD_SUFFIX}'
         self.EvalCommand = f'eval{CMD_SUFFIX}'

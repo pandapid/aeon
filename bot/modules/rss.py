@@ -445,13 +445,13 @@ async def rssListener(client, query):
             buttons.ibutton("Back", f"rss back {user_id}")
             buttons.ibutton("Close", f"rss close {user_id}")
             button = buttons.build_menu(2)
-            msg = '''Send one or more rss titles with new filters or command separated by new line.
-Examples:
-Title1 -c mirror -up remote:path/subdir -exf none -inf 1080 or 720 opt: up: remote:path/subdir
-Title2 -c none -inf none -opt none
-Title3 -c mirror -rcf xxx -up xxx -z pswd
-Note: Only what you provide will be edited, the rest will be the same like example 2: exf will stay same as it is.
-Timeout: 60 sec. Argument -c for command and options
+            msg = '''Kirim satu atau lebih judul rss dengan filter atau perintah baru yang dipisahkan oleh baris baru.
+Contoh:
+Judul1 -c mirror -up remote:path/subdir -exf none -inf 1080 atau 720 opt: up: remote:path/subdir
+Judul2 -c tidak ada -inf tidak ada -tidak memilih tidak ada
+Judul3 -c mirror -rcf xxx -up xxx -z pswd
+Catatan: Hanya yang Anda berikan yang akan diedit, selebihnya akan sama seperti contoh 2: exf akan tetap sama.
+Batas waktu: 60 detik. Argumen -c untuk perintah dan opsi
             '''
             await editMessage(message, msg, button)
             pfunc = partial(rssEdit, pre_event=query)

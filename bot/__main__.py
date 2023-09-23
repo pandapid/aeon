@@ -112,7 +112,7 @@ async def start(client, message):
         return await sendMessage(message, msg)
     elif await CustomFilters.authorized(client, message):
         help_command = f"/{BotCommands.HelpCommand}"
-        start_string = f'This bot can mirror all your links|files|torrents to Google Drive or any rclone cloud or to telegram.\n<b>Type {help_command} to get a list of available commands</b>'
+        start_string = f'Hai bree\n<b>Type {help_command} to get a list of available commands</b>'
         await sendMessage(message, start_string, photo='IMAGES')
     else:
         await sendMessage(message, 'You Are not authorized user!', photo='IMAGES')
@@ -231,38 +231,31 @@ async def search_images():
 
 
 help_string = f'''
-NOTE: Try each command without any arguments to see more details.
-/{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Starts mirroring to Google Drive.
-/{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Starts mirroring to Google Drive using qBittorrent.
-/{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}: Mirrors links supported by yt-dlp.
-/{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Starts leeching to Telegram.
-/{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}: Starts leeching using qBittorrent.
-/{BotCommands.YtdlLeechCommand[0]} or /{BotCommands.YtdlLeechCommand[1]}: Leeches links supported by yt-dlp.
-/{BotCommands.CloneCommand} [drive_url]: Copies files/folders to Google Drive.
-/{BotCommands.CountCommand} [drive_url]: Counts files/folders in Google Drive.
-/{BotCommands.DeleteCommand} [drive_url]: Deletes files/folders from Google Drive (Only Owner & Sudo).
-/{BotCommands.UserSetCommand} [query]: User settings.
-/{BotCommands.BotSetCommand} [query]: Bot settings.
-/{BotCommands.BtSelectCommand}: Select files from torrents by gid or reply.
-/{BotCommands.CancelMirror}: Cancels task by gid or reply.
-/{BotCommands.CancelAllCommand} [query]: Cancels all [status] tasks.
+⌬ NOTE: Coba setiap perintah tanpa argumen apa pun untuk melihat detail lebih lanjut.
+➲ <b> Perintah leech:</b>
+<b> /{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}:</b> Mulai leech ke Telegram.
+<b> /{BotCommands.YtdlLeechCommand[0]} or /{BotCommands.YtdlLeechCommand[1]}:</b> Leeches links supported by yt-dlp.
+<b> /{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}:</b> Starts leeching using qBittorrent.
+
+➲ <b> Perintah mirror:</b>
+<b> /{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}:</b> Starts mirroring to Google Drive.
+<b> /{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}:</b> Mulai melakukan mirroring ke Google Drive menggunakan qBittorrent.
+<b> /{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}:</b> Mirrors links supported by yt-dlp.
+<b> /{BotCommands.CloneCommand[0]} or /{BotCommands.CloneCommand[1]} [drive_url]:</b> Copies files/folders to Google Drive.
+<b> /{BotCommands.CountCommand} [drive_url]:</b> Counts files/folders in Google Drive.
+
+➲ <b> Setting:</b>
+<b> /{BotCommands.UserSetCommand} [query]:</b> User settings.
+<b> /{BotCommands.BotSetCommand} [query]:</b> Bot settings (owner).
+
+➲ <b> Perintah lain:</b>
+<b> /{BotCommands.BtSelectCommand}:</b> Select files from torrents by gid or reply.
+<b> /{BotCommands.CancelMirror}:</b> Cancels task by gid or reply.
+<b> /{BotCommands.CancelAllCommand[0]} or /{BotCommands.CancelAllCommand[1]}:</b> Cancels all [status] tasks.
 /{BotCommands.ListCommand} [query]: Searches in Google Drive(s).
 /{BotCommands.SearchCommand} [query]: Searches for torrents with API.
 /{BotCommands.StatusCommand}: Shows status of all downloads.
 /{BotCommands.StatsCommand}: Shows stats of the machine hosting the bot.
-/{BotCommands.PingCommand}: Checks how long it takes to ping the bot (Only Owner & Sudo).
-/{BotCommands.AuthorizeCommand}: Authorizes a chat or a user to use the bot (Only Owner & Sudo).
-/{BotCommands.UnAuthorizeCommand}: Unauthorizes a chat or a user to use the bot (Only Owner & Sudo).
-/{BotCommands.UsersCommand}: Shows user settings (Only Owner & Sudo).
-/{BotCommands.AddSudoCommand}: Adds sudo user (Only Owner).
-/{BotCommands.RmSudoCommand}: Removes sudo users (Only Owner).
-/{BotCommands.RestartCommand}: Restarts and updates the bot (Only Owner & Sudo).
-/{BotCommands.LogCommand}: Gets a log file of the bot. Handy for getting crash reports (Only Owner & Sudo).
-/{BotCommands.ShellCommand}: Runs shell commands (Only Owner).
-/{BotCommands.EvalCommand}: Runs Python b line or lines (Only Owner).
-/{BotCommands.ExecCommand}: Runs commands in Exec (Only Owner).
-/{BotCommands.ClearLocalsCommand}: Clears {BotCommands.EvalCommand} or {BotCommands.ExecCommand} locals (Only Owner).
-/{BotCommands.RssCommand}: RSS Menu.
 '''
 
 @new_task
@@ -273,7 +266,7 @@ async def bot_help(client, message):
 
 
 async def restart_notification():
-    now = datetime.now(timezone('Asia/Dhaka'))
+    now = datetime.now(timezone('Asia/Jakarta'))
     date = now.strftime('%d/%m/%y')
     time = now.strftime('%I:%M:%S %p')
     rmsg = f'Restarted Successfully!\n\n<b>Date:</b> {date}\n<b>Time:</b> {time}'

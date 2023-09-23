@@ -33,8 +33,8 @@ async def cancel_mirror(_, message):
             await one_minute_del(x)
             return
     elif len(msg) == 1:
-        msg = "Reply to an active Command message which was used to start the download" \
-              f" or send <code>/{BotCommands.CancelMirror}_GID</code> to cancel it!"
+        msg = "Membalas pesan Perintah aktif yang digunakan untuk memulai pengunduhan" \
+              f" or send <i>/{BotCommands.CancelMirror}_GID</i> to cancel it!"
         x = await sendMessage(message, msg)
         await one_minute_del(x)
         return

@@ -37,10 +37,10 @@ async def select(client, message):
         await sendMessage(message, "This task is not for you!")
         return
     if dl.status() not in [MirrorStatus.STATUS_DOWNLOADING, MirrorStatus.STATUS_PAUSED, MirrorStatus.STATUS_QUEUEDL]:
-        await sendMessage(message, 'Task should be in download or pause (incase message deleted by wrong) or queued (status incase you used torrent file)!')
+        await sendMessage(message, 'Tugas harus dalam unduhan atau jeda (jika pesan terhapus karena kesalahan) atau antri (status jika Anda menggunakan file torrent)!')
         return
     if dl.name().startswith('[METADATA]'):
-        await sendMessage(message, 'Try after downloading metadata finished!')
+        await sendMessage(message, 'Coba setelah pengunduhan metadata selesai!')
         return
 
     try:
@@ -57,14 +57,14 @@ async def select(client, message):
                     await sync_to_async(aria2.client.force_pause, id_)
                 except Exception as e:
                     LOGGER.error(
-                        f"{e} Error in pause, this mostly happens after abuse aria2")
+                        f"{e} Error dalam jeda, ini kebanyakan terjadi setelah penyalahgunaan aria2")
         listener.select = True
     except:
-        await sendMessage(message, "This is not a bittorrent task!")
+        await sendMessage(message, "Ini bukan tugas bittorrent!")
         return
 
     SBUTTONS = bt_selection_buttons(id_)
-    msg = "Your download paused. Choose files then press Done Selecting button to resume downloading."
+    msg = "Unduhan Anda dijeda. Pilih file lalu tekan tombol Selesai Memilih untuk melanjutkan pengunduhan."
     await sendMessage(message, msg, SBUTTONS)
 
 
@@ -80,7 +80,7 @@ async def get_confirm(client, query):
     if hasattr(dl, 'listener'):
         listener = dl.listener()
     else:
-        await query.answer("Not in download state anymore! Keep this message to resume the seed if seed enabled!", show_alert=True)
+        await query.answer("Tidak dalam status unduh lagi! Simpan pesan ini untuk melanjutkan seed jika seed diaktifkan!", show_alert=True)
         return
     if user_id != listener.message.from_user.id and not await CustomFilters.sudo_user(client, query):
         await query.answer("This task is not for you!", show_alert=True)
@@ -117,7 +117,7 @@ async def get_confirm(client, query):
                 try:
                     await sync_to_async(aria2.client.unpause, id_)
                 except Exception as e:
-                    LOGGER.error(f"{e} Error in resume, this mostly happens after abuse aria2. Try to use select cmd again!")
+                    LOGGER.error(f"{e} Kesalahan dalam resume, ini kebanyakan terjadi setelah penyalahgunaan aria2. Coba gunakan pilih cmd lagi!")
         await sendStatusMessage(message)
         await message.delete()
     elif data[1] == "rm":
