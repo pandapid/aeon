@@ -364,7 +364,7 @@ class MirrorLeechListener:
         user_id = self.message.from_user.id
         name, _ = await format_filename(name, user_id, isMirror=not self.isLeech)
         user_dict = user_data.get(user_id, {})
-        msg = f'{escape(name)}\n\n'
+        msg = f' » <b>{escape(name)}</b>\n\n'
         msg += f'<b>• Size: </b>{get_readable_file_size(size)}\n'
         msg += f'<b>• Elapsed: </b>{get_readable_time(time() - self.message.date.timestamp())}\n'
         msg += f'<b>• Mode: </b>{self.upload_details["mode"]}\n'
@@ -383,7 +383,7 @@ class MirrorLeechListener:
             else:
                 attachmsg = True
                 fmsg, totalmsg = '\n\n', ''
-                lmsg = '<b>Files have been sent. Access them via the provided links.</b>'
+                lmsg = '<b>List upload:</b>'
                 for index, (link, name) in enumerate(files.items(), start=1):
                     fmsg += f"{index}. <b>{name}</b>\n"
                     totalmsg = (msg + lmsg + fmsg) if attachmsg else fmsg
@@ -405,7 +405,7 @@ class MirrorLeechListener:
                 if self.isSuperGroup:
                     btn.ibutton('View in inbox', f"aeon {user_id} botpm", 'header')
                     btn = extra_btns(btn)
-                    await sendMessage(self.message, f'{msg} <b>Files has been sent to your inbox</b>', btn.build_menu(1))
+                    await sendMessage(self.message, f'{msg} <b>File telah dikirim ke kotak masuk Anda</b>', btn.build_menu(1))
                 else:
                     await deleteMessage(self.botpmmsg)
             if self.seed:
