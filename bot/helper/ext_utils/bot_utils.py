@@ -192,7 +192,7 @@ def get_readable_message():
             msg += f"\n➲ <b>Size:</b> <code>{download.size()}</code>"
         msg += f"\n➲ <b>Elapsed:</b> <code>{get_readable_time(time() - download.message.date.timestamp())}</code>"
         msg += f"\n➲ <b>Mode:</b> <code>{download.upload_details['mode']}</code>"
-        msg += f"➲ <b>by:<b> <spoiler>{source(download)}</spoiler>"
+        msg += f"\n➲ <b>by:<b> <spoiler>{source(download)}</spoiler>"
         msg += f"\n⌬ /{BotCommands.CancelMirror}_{download.gid()[:8]}\n\n"
     if len(msg) == 0:
         return None, None
