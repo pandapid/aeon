@@ -22,7 +22,7 @@ async def __onDownloadStarted(api, gid):
         if dl := await getDownloadByGid(gid):
             listener = dl.listener()
             if listener.select:
-                metamsg = "Downloading Metadata, wait then you can select files. Use torrent file to avoid this wait."
+                metamsg = "Download Metadata, tunggu lalu Anda dapat memilih file. Gunakan file torrent untuk menghindari penantian ini."
                 meta = await sendMessage(listener.message, metamsg)
                 while True:
                     await sleep(0.5)
@@ -40,7 +40,7 @@ async def __onDownloadStarted(api, gid):
             dl = await getDownloadByGid(gid)
         if dl:
             if not hasattr(dl, 'listener'):
-                LOGGER.warning(f"onDownloadStart: {gid}. STOP_DUPLICATE didn't pass since download completed earlier!")
+                LOGGER.warning(f"onDownloadStart: {gid}. STOP_DUPLICATE tidak lulus sejak pengunduhan selesai sebelumnya!")
                 return
             listener = dl.listener()
             if not listener.isLeech and not listener.select and listener.upPath == 'gd':
@@ -48,7 +48,7 @@ async def __onDownloadStarted(api, gid):
                 if not download.is_torrent:
                     await sleep(3)
                     download = download.live
-                LOGGER.info('Checking File/Folder if already in Drive...')
+                LOGGER.info('Memeriksa File/Folder apakah sudah ada di Drive...')
                 name = download.name
                 if listener.compress:
                     name = f"{name}.zip"
@@ -60,7 +60,7 @@ async def __onDownloadStarted(api, gid):
                 if name is not None:
                     telegraph_content, contents_no = await sync_to_async(GoogleDriveHelper().drive_list, name, True)
                     if telegraph_content:
-                        msg = f"File/Folder is already available in Drive.\nHere are {contents_no} list results:"
+                        msg = f"File/Folder sudah tersedia di Drive.\nBerikut hasil daftar {contents_no}:"
                         button = await get_telegraph_list(telegraph_content)
                         await listener.onDownloadError(msg, button)
                         await sync_to_async(api.remove, [download], force=True, files=True)
@@ -158,7 +158,7 @@ async def __onBtDownloadComplete(api, gid):
                 await sync_to_async(api.set_options, {'max-upload-limit': '0'}, [download])
             except Exception as e:
                 LOGGER.error(
-                    f'{e} You are not able to seed because you added global option seed-time=0 without adding specific seed_time for this torrent GID: {gid}')
+                    f'{e} Anda tidak dapat melakukan seed karena Anda menambahkan opsi global seed-time=0 tanpa menambahkan seed_time spesifik untuk GID torrent ini: {gid}')
         else:
             try:
                 await sync_to_async(api.client.force_pause, gid)

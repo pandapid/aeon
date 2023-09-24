@@ -46,12 +46,12 @@ class MirrorStatus:
     STATUS_CLONING = "Cloning"
     STATUS_QUEUEDL = "DL queued"
     STATUS_QUEUEUP = "UL queued"
-    STATUS_PAUSED = "Paused"
+    STATUS_PAUSED = "Paused ⏸..."
     STATUS_ARCHIVING = "Archiving"
     STATUS_EXTRACTING = "Extracting"
-    STATUS_SPLITTING = "Splitting"
-    STATUS_CHECKING = "CheckUp"
-    STATUS_SEEDING = "Seeding"
+    STATUS_SPLITTING = "Splitting ✂️.."
+    STATUS_CHECKING = "CheckUp ✔️"
+    STATUS_SEEDING = "Seeding 🌱...."
 
 
 class setInterval:
@@ -170,12 +170,11 @@ def get_readable_message():
         globals()['STATUS_START'] = STATUS_LIMIT * (PAGES - 1)
         globals()['PAGE_NO'] = PAGES
     for download in list(download_dict.values())[STATUS_START:STATUS_LIMIT+STATUS_START]:
-        msg += f"<b> File Name »</b> {escape(f'{download.name()}')}\n"
-        msg += f"by {source(download)}\n\n"
-        msg += f"<b>{download.status()}...</b>"
+        msg += f"<b>File Name »</b> <spoiler>{escape(f'{download.name()}')}</spoiler>\n\n"
+        msg += f"➲ <b>{download.status()}...</b>"
         if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
             msg += f"\n<code>{progress_bar(download.progress())}</code> {download.progress()}"
-            msg += f"\n{download.processed_bytes()} of {download.size()}"
+            msg += f"{download.processed_bytes()} of {download.size()}"
             msg += f"\n➲ <b>Speed:</b> <code>{download.speed()}</code>"
             msg += f'\n➲ <b>Estimated:</b> <code>{download.eta()}</code>'
             if hasattr(download, 'seeders_num'):
@@ -193,6 +192,7 @@ def get_readable_message():
             msg += f"\n➲ <b>Size:</b> <code>{download.size()}</code>"
         msg += f"\n➲ <b>Elapsed:</b> <code>{get_readable_time(time() - download.message.date.timestamp())}</code>"
         msg += f"\n➲ <b>Mode:</b> <code>{download.upload_details['mode']}</code>"
+        msg += f"➲ <b>by:<b> <spoiler>{source(download)}</spoiler>"
         msg += f"\n⌬ /{BotCommands.CancelMirror}_{download.gid()[:8]}\n\n"
     if len(msg) == 0:
         return None, None
@@ -435,7 +435,7 @@ async def checking_access(user_id, button=None):
         if button is None:
             button = ButtonMaker()
         button.ubutton('Collect token', tinyfy(short_url(f'https://telegram.me/{bot_name}?start={token}')))
-        return f'Your token has expired, please collect a new token.\n<b>It will expire after {time_str}</b>!', button
+        return f'Token Anda telah habis masa berlakunya, silakan ambil token baru.\n<b>Masa berlakunya akan habis setelah {time_str}</b>!', button
     return None, button
 
 
