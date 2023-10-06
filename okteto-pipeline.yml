@@ -1,0 +1,3 @@
+icon: https://graph.org/file/14d28e461113c0e5ea978.jpg
+deploy:
+    - okteto deploy --build -f Dockerfile
