@@ -1,4 +1,4 @@
-version: "1.1"
+version: "2.1"
 services:
   #gluetun:
     #image: qmcgaw/gluetun:v3.34
@@ -35,7 +35,7 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
-    env:
+      env:
           HD_OWNER_ID: $OWNER_ID
           HD_TELEGRAM_API: $TELEGRAM_API
           HD_TELEGRAM_HASH: $TELEGRAM_HASH
