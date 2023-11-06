@@ -34,7 +34,8 @@ domain_dict = {
     'racaty':       ['racaty'],
     'fichier':      ['1fichier.com'],
     'solidfiles':   ['solidfiles.com'],
-    'krakenfiles':  ['krakenfiles.com'],
+    'krakenfiles':  ['krakenfiles.com',
+                    'kuramadrive.com'],
     'uploadee':     ['upload.ee'],
     'gofile':       ['gofile.io'],
     'send_cm':      ['send.cm'],
@@ -64,6 +65,9 @@ domain_dict = {
                      'dood.yt',
                      'doods.yt',
                      'dood.stream',
+                     'ds2play.com',
+                     'luluvdo.com',
+                     'dood.boo',
                      'doods.pro'],
     'streamtape':   ['streamtape.com',
                      'streamtape.co',
@@ -352,6 +356,7 @@ def krakenfiles(url):
     if _json['status'] != 'ok':
         raise DirectDownloadLinkException("ERROR: Unable to find download after post request")
     return _json['url']
+    
 
 
 def uploadee(url):
