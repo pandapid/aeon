@@ -215,6 +215,8 @@ def onedrive(link):
         raise DirectDownloadLinkException('ERROR: Direct link not found')
     return resp['@content.downloadUrl']
 
+ANCHOR_URL = 'https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lcr1ncUAAAAAH3cghg6cOTPGARa8adOf-y9zv2x&co=aHR0cHM6Ly9vdW8uaW86NDQz&hl=en&v=1B_yv3CBEV10KtI2HJ6eEXhJ&size=invisible&cb=4xnsug1vufyr'
+
 def RecaptchaV3(ANCHOR_URL):
     url_base = 'https://www.google.com/recaptcha/'
     post_data = "v={}&reason=q&c={}&k={}&co={}"
@@ -245,7 +247,7 @@ def ouo(url: str) -> str:
         if res.headers.get('Location'):
             break
         bs4 = BeautifulSoup(res.content, 'html.parser')
-        inputs = bs4.form.findAll("input", {"name": re_compile(r"_token")})
+        inputs = bs4.form.findAll("input", {"name": re_compile(r"token$")})
         data = {input.get('name'): input.get('value') for input in inputs}
         ans = RecaptchaV3(ANCHOR_URL)
         data['x-token'] = ans
