@@ -439,7 +439,7 @@ def terabox(url):
         else:
             params['root'] = '1'
         try:
-            _json = session.get("https://www.4funbox.com/share/list", params=params, cookies=cookies).json()
+            _json = session.get("https://www.dubox.com/share/list", params=params, cookies=cookies).json()
         except Exception as e:
             raise DirectDownloadLinkException(f'ERROR: {e.__class__.__name__}')
         if _json['errno'] not in [0, '0']:
