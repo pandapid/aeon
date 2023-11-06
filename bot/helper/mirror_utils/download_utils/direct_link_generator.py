@@ -37,6 +37,8 @@ domain_dict = {
     'krakenfiles':  ['krakenfiles.com',
                     'kuramadrive.com'],
     'uploadee':     ['upload.ee'],
+    'ouo':          ['ouo.io',
+                    'ouo.press'],
     'gofile':       ['gofile.io'],
     'send_cm':      ['send.cm'],
     'easyupload':   ['easyupload.io'],
@@ -213,6 +215,26 @@ def onedrive(link):
         raise DirectDownloadLinkException('ERROR: Direct link not found')
     return resp['@content.downloadUrl']
 
+def ouo(url: str) -> str:
+    client = requests.Session()
+    tempurl = url.replace("ouo.press", "ouo.io")
+    p = urlparse(tempurl)
+    id = tempurl.split('/')[-1]
+    res = client.get(tempurl)
+    next_url = f"{p.scheme}://{p.hostname}/go/{id}"
+    for _ in range(2):
+        if res.headers.get('Location'):
+            break
+        bs4 = BeautifulSoup(res.content, 'html.parser')
+        inputs = bs4.form.findAll("input", {"name": re_compile(r"token$")})
+        data = {input.get('name'): input.get('value') for input in inputs}
+        ans = RecaptchaV3(ANCHOR_URL)
+        data['x-token'] = ans
+        h = {'content-type': 'application/x-www-form-urlencoded'}
+        res = client.post(next_url, data=data, headers=h,
+                          allow_redirects=False)
+        next_url = f"{p.scheme}://{p.hostname}/xreallcygo/{id}"
+    return res.headers.get('Location')
 
 def pixeldrain(url):
     url = url.strip("/ ")

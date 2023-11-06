@@ -5,7 +5,7 @@ from logging import getLogger
 from yt_dlp import YoutubeDL, DownloadError
 from re import search as re_search
 
-from bot import download_dict_lock, download_dict, non_queued_dl, queue_dict_lock, config_dict
+from bot import download_dict_lock, download_dict, non_queued_dl, queue_dict_lock
 from bot.helper.telegram_helper.message_utils import sendStatusMessage
 from ..status_utils.yt_dlp_download_status import YtDlpDownloadStatus
 from bot.helper.mirror_utils.status_utils.queue_status import QueueStatus
@@ -20,6 +20,7 @@ class MyLogger:
         self.obj = obj
 
     def debug(self, msg):
+        # Hack to fix changing extension
         if not self.obj.is_playlist:
             if match := re_search(r'.Merger..Merging formats into..(.*?).$', msg) or \
                     re_search(r'.ExtractAudio..Destination..(.*?)$', msg):
@@ -54,23 +55,21 @@ class YoutubeDLHelper:
         self.name = ''
         self.is_playlist = False
         self.playlist_count = 0
-        self.opts = {
-            'progress_hooks': [self.__onDownloadProgress],
-            'logger': MyLogger(self),
-            'usenetrc': True,
-            'cookiefile': 'cookies.txt',
-            'allow_multiple_video_streams': True,
-            'allow_multiple_audio_streams': True,
-            'noprogress': True,
-            'allow_playlist_files': True,
-            'overwrites': True,
-            'writethumbnail': True,
-            'trim_file_name': 220,
-            'ffmpeg_location': '/bin/render',
-            'retry_sleep_functions': {'http': lambda n: 3,
-                                      'fragment': lambda n: 3,
-                                      'file_access': lambda n: 3,
-                                      'extractor': lambda n: 3}}
+        self.opts = {'progress_hooks': [self.__onDownloadProgress],
+                     'logger': MyLogger(self),
+                     'usenetrc': True,
+                     'cookiefile': 'cookies.txt',
+                     'allow_multiple_video_streams': True,
+                     'allow_multiple_audio_streams': True,
+                     'noprogress': True,
+                     'allow_playlist_files': True,
+                     'overwrites': True,
+                     'writethumbnail': True,
+                     'trim_file_name': 220,
+                     'retry_sleep_functions': {'http': lambda n: 3,
+                                               'fragment': lambda n: 3,
+                                               'file_access': lambda n: 3,
+                                               'extractor': lambda n: 3}}
 
     @property
     def download_speed(self):
@@ -193,8 +192,7 @@ class YoutubeDLHelper:
             self.opts['ignoreerrors'] = True
             self.is_playlist = True
 
-        self.__gid = token_hex(4)
-
+        self.__gid = token_hex(5)
         await self.__onDownloadStart()
 
         self.opts['postprocessors'] = [
@@ -256,9 +254,7 @@ class YoutubeDLHelper:
         if msg:
             await self.__listener.onDownloadError(msg, button)
             return
-        if limit_exceeded := await limit_checker(self.__size, self.__listener, isYtdlp=True):
-            if self.playlist_count > config_dict['PLAYLIST_LIMIT']:
-                limit_exceeded += f'\nYour Playlist has {self.playlist_count} files'
+        if limit_exceeded := await limit_checker(self.__size, self.__listener, isYtdlp=True, isPlayList=self.playlist_count):
             await self.__listener.onDownloadError(limit_exceeded)
             return
         added_to_queue, event = await is_queued(self.__listener.uid)
