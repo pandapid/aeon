@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from pyrogram.filters import command, regex, user
 from asyncio import sleep, wait_for, Event, wrap_future
@@ -110,7 +109,7 @@ class YtSelection:
             buttons.ibutton('Best Audios', 'ytq ba/b')
             buttons.ibutton('Cancel', 'ytq cancel', 'footer')
             self.__main_buttons = buttons.build_menu(3)
-            msg = f'Choose Playlist Videos Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+            msg = f'Choose Playlist Videos Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         else:
             format_dict = result.get('formats')
             if format_dict is not None:
@@ -129,14 +128,14 @@ class YtSelection:
                             if item.get('audio_ext') == 'm4a':
                                 self.__is_m4a = True
                             b_name = f"{item['acodec']}-{item['ext']}"
-                            v_format = f'ba[format_id={format_id}]'
+                            v_format = format_id
                         elif item.get('height'):
                             height = item['height']
                             ext = item['ext']
                             fps = item['fps'] if item.get('fps') else ''
                             b_name = f'{height}p{fps}-{ext}'
                             ba_ext = '[ext=m4a]' if self.__is_m4a and ext == 'mp4' else ''
-                            v_format = f'bv*[format_id={format_id}]+ba{ba_ext}/b[height=?{height}]'
+                            v_format = f'{format_id}+ba{ba_ext}/b[height=?{height}]'
                         else:
                             continue
 
@@ -156,7 +155,7 @@ class YtSelection:
             buttons.ibutton('Best Audio', 'ytq ba/b')
             buttons.ibutton('Cancel', 'ytq cancel', 'footer')
             self.__main_buttons = buttons.build_menu(2)
-            msg = f'Choose Video Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+            msg = f'Choose Video Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         self.__reply_to = await sendMessage(self.__message, msg, self.__main_buttons)
         await wrap_future(future)
         if not self.is_cancelled:
@@ -165,9 +164,9 @@ class YtSelection:
 
     async def back_to_main(self):
         if self.__is_playlist:
-            msg = f'Choose Playlist Videos Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+            msg = f'Choose Playlist Videos Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         else:
-            msg = f'Choose Video Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+            msg = f'Choose Video Quality:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         await editMessage(self.__reply_to, msg, self.__main_buttons)
 
     async def qual_subbuttons(self, b_name):
@@ -179,7 +178,7 @@ class YtSelection:
         buttons.ibutton('Back', 'ytq back', 'footer')
         buttons.ibutton('Cancel', 'ytq cancel', 'footer')
         subbuttons = buttons.build_menu(2)
-        msg = f'Choose Bit rate for <b>{b_name}</b>:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+        msg = f'Choose Bit rate for <b>{b_name}</b>:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         await editMessage(self.__reply_to, msg, subbuttons)
 
     async def mp3_subbuttons(self):
@@ -192,7 +191,7 @@ class YtSelection:
         buttons.ibutton('Back', 'ytq back')
         buttons.ibutton('Cancel', 'ytq cancel')
         subbuttons = buttons.build_menu(3)
-        msg = f'Choose mp3 Audio{i} Bitrate:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+        msg = f'Choose mp3 Audio{i} Bitrate:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         await editMessage(self.__reply_to, msg, subbuttons)
 
     async def audio_format(self):
@@ -204,7 +203,7 @@ class YtSelection:
         buttons.ibutton('Back', 'ytq back', 'footer')
         buttons.ibutton('Cancel', 'ytq cancel', 'footer')
         subbuttons = buttons.build_menu(3)
-        msg = f'Choose Audio{i} Format:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+        msg = f'Choose Audio{i} Format:\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         await editMessage(self.__reply_to, msg, subbuttons)
 
     async def audio_quality(self, format):
@@ -216,7 +215,7 @@ class YtSelection:
         buttons.ibutton('Back', 'ytq aq back')
         buttons.ibutton('Cancel', 'ytq aq cancel')
         subbuttons = buttons.build_menu(5)
-        msg = f'Choose Audio{i} Qaulity:\n0 is best and 10 is worst\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time))}'
+        msg = f'Choose Audio{i} Qaulity:\n0 is best and 10 is worst\nTimeout: {get_readable_time(self.__timeout-(time()-self.__time), True)}'
         await editMessage(self.__reply_to, msg, subbuttons)
 
 
@@ -368,10 +367,9 @@ async def _ytdl(client, message, isLeech=False, sameDir=None, bulk=[]):
     error_button = None
     if await nsfw_precheck(message):
      	  error_msg.extend(['NSFW detected'])
-    if not await isAdmin(message):
-        task_utilis_msg, error_button = await task_utils(message)
-        if task_utilis_msg:
-            error_msg.extend(task_utilis_msg)
+    task_utilis_msg, error_button = await task_utils(message)
+    if task_utilis_msg:
+        error_msg.extend(task_utilis_msg)
     if error_msg:
         final_msg = f'Hey, <b>{tag}</b>!\n'
         for __i, __msg in enumerate(error_msg, 1):
